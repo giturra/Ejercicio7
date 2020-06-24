@@ -15,10 +15,11 @@ public class DB {
 	private String pass;
 	private Connection conn;
 	
-	public DB() throws SQLException {
+	public DB() throws SQLException, ClassNotFoundException {
 		this.jdbcURL = "jdbc:mysql://localhost:3306/tarea0?useSSL=false";
 		this.user = "root";
 		this.pass = "";
+		Class.forName("com.mysql.jdbc.Driver");
 		this.conn = DriverManager.getConnection(this.jdbcURL, this.user, this.pass);
 	}
 	
@@ -54,7 +55,7 @@ public class DB {
 		st.close();
 	}
 	
-	public static void main(String args[]) throws SQLException {
+	public static void main(String args[]) throws SQLException, ClassNotFoundException {
 		DB db = new DB();
 		List<String> tasks = db.getTasks();
 		
@@ -63,7 +64,6 @@ public class DB {
 		}
 		db.deleteTask("dormiiiiiiiiiiiiiiiirrr mucho2");
 		db.closeConnection();
-		
 	}
 	
 	

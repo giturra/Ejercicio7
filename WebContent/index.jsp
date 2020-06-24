@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page import ="java.util.*" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +8,21 @@
 </head>
 <body>
 	<h1>TODO list</h1>
-	<form method="post" action="">
+	<form method="post" action="todolist">
 		<input type="text" name="task" placeholder="Nueva tarea" />
 		<input type="submit" value="Agregar" />
 	</form>
+	
+		<%
+			List tasks =(List) request.getAttribute("tasks");
+			Iterator it = tasks.iterator();
+			out.println("<br>");
+			while(it.hasNext()){
+				out.println("<button>Subir</button><button>Bajar</button><button>Eliminar</button>");
+				out.println(" "+it.next()+"<br>");
+			}
+		%>
+	
+	<br>
 </body>
 </html>
